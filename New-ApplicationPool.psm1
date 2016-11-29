@@ -10,19 +10,18 @@
                        -EnableCredentialValidation False `
                        -PoolName 'NameOfPool' `
                        -RuntimeVersion v2.0 `
-                       -ManagedPipelineMode classic `
-                       -Verbose 4>&1 | Out-File -FilePath 'C:\log.txt'
+                       -ManagedPipelineMode classic
 .INPUTS
-   [string] UserDomain 
-   [string] UserName 
-   [string] UserPassword 
-   [string] PoolName 
-   [boolean] EnableCredentialValidation 
+   [string] UserDomain
+   [string] UserName
+   [string] UserPassword
+   [string] PoolName
+   [boolean] EnableCredentialValidation
    [ValidateSet('v2.0', 'v4.0')] RuntimeVersion
    [ValidateSet('integrated', 'classic')] ManagedPipelineMode
-   [Int64] MaximumWorkerProcesses
+   [Int32] MaximumWorkerProcesses
 .OUTPUTS
-   * Verbose output   
+
 #>
 
 function New-ApplicationPool
