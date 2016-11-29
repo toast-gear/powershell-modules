@@ -11,7 +11,8 @@
                 -OutputArtefact zip `
                 -CompressionLevel 5 `
                 -EnablePasswordProtection True `
-                -Password 'MyPassword'
+                -Password 'MyPassword' `
+				-Verbose | Out-File 'C:\Log.txt' -Append -Force
 .EXAMPLE
    ##########
    New-7zipTask -SourceFullName 'C:\InputFolder' `
