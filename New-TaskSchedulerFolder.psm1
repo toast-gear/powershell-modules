@@ -7,7 +7,7 @@
    * Handles creating folders along the entire declared path without any problems
 #>
 
-function New-TaskSchedulerFolder
+function New-ScheduledTaskFolder
 {
     [CmdletBinding()]
     param
