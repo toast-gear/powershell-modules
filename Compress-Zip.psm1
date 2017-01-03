@@ -1,5 +1,6 @@
 ﻿<#
 .Synopsis
+   Module to create a .zip file
 .EXAMPLE
    Compress-Zip -SourceDirectoryPath 'C:\Users\Steve\TEMP\input\basedir' -DestinationArchiveFileName 'C:\Users\Steve\TEMP\output2.zip' -CompressionLevel Fastest -IncludeBaseDirectory True
 .NOTES
@@ -17,6 +18,7 @@ function Compress-Zip
         [ValidateScript({
             if([System.IO.Path]::HasExtension($_))
             {
+                Write-Warning 'The path provided includes a file extension, the provided path should NOT have a file extension.'
                 $false
             }
             else
@@ -39,6 +41,7 @@ function Compress-Zip
     }
     catch
     {
+        Write-Warning 'Errors encounter whilst loading the required assemblies, module aborted and exceptions printed below'
         foreach ($Err in $Assembly | Select-Object -Unique)
         {
             Write-Warning $Err.Message
