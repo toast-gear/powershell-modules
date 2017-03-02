@@ -59,96 +59,26 @@ function Invoke-ScriptRunnerSMO
     [CmdletBinding()]
         Param
         (
-            [ValidateScript({ 
-				if(($_ -is [System.String]))
-				{
-					if(!([System.String]::IsNullOrWhiteSpace($_)))
-					{
-					$true
-					}
-					else
-					{
-					Throw ("The value $_ null or white space. The supplied value must have a length greater than 0")
-					}
-				}
-				else
-				{
-				Throw ("The value $_ is an illegal type. The supplied value must be a string")
-				}
-			})]
+            [String]
+            [ValidateNotNullOrEmpty()]
             [Parameter(Mandatory=$true)]
             $SQL_Server,
             [ValidateSet($true,$false)]
             [Parameter(Mandatory=$true)]
             $EnableWindowsAuthentication,
-            [ValidateScript({ 
-				if(($_ -is [System.String]))
-				{
-					if(!([System.String]::IsNullOrWhiteSpace($_)))
-					{
-						$true
-					}
-					else
-					{
-						Throw ("The value $_ null or white space. The supplied value must have a length greater than 0")
-					}
-				}
-				else
-				{
-					Throw ("The value $_ is an illegal type. The supplied value must be a string")
-				}
-			})]
+            [String]
+            [ValidateNotNullOrEmpty()]
             [Parameter(Mandatory=$false)]
             $SQL_Login,
-            [ValidateScript({ 
-				if(($_ -is [System.String]))
-				{
-					if(!([System.String]::IsNullOrWhiteSpace($_)))
-					{
-						$true
-					}
-					else
-					{
-						Throw ("The value $_ null or white space. The supplied value must have a length greater than 0")
-					}
-				}
-				else
-				{
-					Throw
-					("The value $_ is an illegal type. The supplied value must be a string")
-				}
-			})]
+            [String]
+            [ValidateNotNullOrEmpty()]
             [Parameter(Mandatory=$false)]
             $SQL_Password,
-            [ValidateScript({ 
-                if(($_ -is [System.String]))
-                {
-                    if(!([System.String]::IsNullOrWhiteSpace($_)))
-                    {
-                        $true 
-                    }
-                    else
-                    {
-                        Throw ("The value $_ null or white space. The supplied value must have a length greater than 0") 
-                    } 
-                }
-                else
-                {
-                    Throw ("The value $_ is an illegal type. The supplied value must be a string") 
-                }
-            })]
+            [String]
+            [ValidateNotNullOrEmpty()]
             [Parameter(Mandatory=$true)]
             $InitialDatabase,
-            [ValidateScript({ 
-                if(($_ -is [System.Array]) -or ($_ -is [System.String]))
-                {
-                    $true 
-                }
-                else
-                {
-                    Throw ("The value $_ is an illegal type, the supplied value must be either a string or an array of strings i.e. a single path or multiple paths") 
-                }
-            })]
+            [String []]
             [Parameter(Mandatory=$true)]
             $SQL_ScriptsLocations,
             [ValidateSet(1,2)]
@@ -166,88 +96,33 @@ function Invoke-ScriptRunnerSMO
             [ValidateSet($true,$false)]
             [Parameter(Mandatory=$true)]
             $Enable_API_Logging,
-            [ValidateScript({
-                if(![system.string]::IsNullOrWhiteSpace($_.split('/')[-1]))
-                {
-                    return $true 
-                }
-                else
-                {
-                    return $false 
-                }
-            })]
+            [String]
+            [ValidateNotNullOrEmpty()]
             $URL_To_API,
-            [ValidateScript({ $_ -is [int] })]
+            [int]
             [Parameter(Mandatory=$false)]
             $Company_ID,
-            [ValidateScript({ $_ -is [int] })]
+            [int]
             [Parameter(Mandatory=$false)]
             $Product_ID,
-            [ValidateScript({ $_ -is [int] })]
+            [int]
             [Parameter(Mandatory=$false)]
             $Environment_ID,
             [ValidateSet($true,$false)]
             [Parameter(Mandatory=$true)]
             $EnableEmailNotifications,
-            [ValidateScript({ 
-                if(($_ -is [System.String]))
-                {
-                    if(!([System.String]::IsNullOrWhiteSpace($_))) {
-                        $true 
-                    }
-                    else
-                    {
-                        Throw ("The value $_ null or white space. The supplied value must have a length greater than 0") 
-                    } 
-                }
-                else
-                {
-                    Throw ("The value $_ is an illegal type. The supplied value must be a string") 
-                }
-            })]
+            [String]
+            [ValidateNotNullOrEmpty()]
             [Parameter(Mandatory=$false)]
             $FromEmailAddress,
-            [ValidateScript({ 
-                if(($_ -is [System.Array]) -or ($_ -is [System.String]))
-                {
-                    $true 
-                }
-                else
-                {
-                    Throw ("The value $_ is an illegal type, the supplied value must be either a string or an array of strings") 
-                }
-            })]
+            [String []]
             [Parameter(Mandatory=$false)]
             $ToSuccessEmailAddresses,
-            [ValidateScript({ 
-                if(($_ -is [System.Array]) -or ($_ -is [System.String]))
-                {
-                    $true 
-                }
-                else
-                {
-                    Throw ("The value $_ is an illegal type, the supplied value must be either a string or an array of strings") 
-                }
-            })]
+            [String []]
             [Parameter(Mandatory=$false)]
             $ToFailEmailAddresses,
-            [ValidateScript({ 
-                if(($_ -is [System.String]))
-                {
-                    if(!([System.String]::IsNullOrWhiteSpace($_)))
-                    {
-                        $true 
-                    }
-                    else
-                    {
-                        Throw ("The value $_ null or white space. The supplied value must have a length greater than 0") 
-                    } 
-                }
-                else
-                {
-                    Throw ("The value $_ is an illegal type. The supplied value must be a string") 
-                }
-            })]
+            [String]
+            [ValidateNotNullOrEmpty()]
             [Parameter(Mandatory=$false)]
             $SMTP_Server
         )
