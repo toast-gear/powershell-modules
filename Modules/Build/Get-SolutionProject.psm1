@@ -4,7 +4,7 @@
 .EXAMPLE
    (Get-ChildItem -Path .\* -Recurse -Include *.sln) | Get-SolutionProjects 
 .EXAMPLE
-   Get-SolutionProjects -Path status_console.sln
+   Get-SolutionProjects -FullName status_console.sln
 #>
 function Get-SolutionProject
 {
